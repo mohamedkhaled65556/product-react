@@ -116,7 +116,10 @@ export default function App() {
             Add New Phone
           </button>
           <button className="btn btn-circle m-3 p-6"
-            onClick={() => setProducts(copyProducts)}>Show All</button>
+            onClick={() => {
+              setProducts(copyProducts)
+              searchInput.current.value = ""
+            }}>Show All</button>
           <div>
             <input type="text" className="input rounded-2xl w-45 mr-1"
               placeholder="Enter Phone Name"
@@ -146,7 +149,6 @@ export default function App() {
                   );
                 });
                 setProducts(result)
-                searchInput.current.value = ""
               }
               }>Search</button>
           </div>
