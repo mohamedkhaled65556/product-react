@@ -7,9 +7,13 @@ export default function App() {
     { name: "Iphone 12", price: 500, qty: 20 },
   ]);
 
+  const [copyProducts, setCopyProducts] = useState([...products])
+
   let nameInput = useRef();
   let priceInput = useRef();
   let qtyInput = useRef();
+  let searchInput = useRef();
+  const [list, setList] = useState(products)
 
   const [globalIndex, setGlobalIndex] = useState(null);
   let editNameInput = useRef();
@@ -35,6 +39,7 @@ export default function App() {
       qtyInput.current.value = "";
       copy.push(newPhone);
       setProducts(copy);
+      setCopyProducts(copy)
     }
   };
 
@@ -44,6 +49,7 @@ export default function App() {
       let copy = [...products];
       copy.splice(index, 1);
       setProducts(copy);
+      setCopyProducts(copy)
     } else return;
   };
 
@@ -82,12 +88,49 @@ export default function App() {
         Your Product
       </header>
       <div className="container mx-3 mt-[5%] xl:px-20">
-        <button
-          className="btn btn-warning my-3 mx-3"
-          onClick={() => document.getElementById("new_phone_modal").showModal()}
-        >
-          Add New Phone
-        </button>
+        <div className="flex justify-between items-center">
+          <button
+            className="btn btn-warning my-3 mx-3"
+            onClick={() => document.getElementById("new_phone_modal").showModal()}
+          >
+            Add New Phone
+          </button>
+          <button className="btn btn-circle m-3 p-6"
+            onClick={() => setProducts(copyProducts)}>Show All</button>
+          <div>
+            <input type="text" className="input rounded-2xl w-45 mr-1"
+              placeholder="Enter Phone Name"
+              ref={searchInput}
+              list="search-list" />
+            <datalist id="search-list"
+              onClick={() => {
+                setList(products.filter((el) => {
+                  return el.name.toLowerCase().replace(/\s/g, "").includes(
+                    searchInput.current.value.toLowerCase().replace(/\s/g, "")
+                  );
+                }))
+              }}>
+              {
+                list.map((el) => {
+                  return (
+                    <option value={el.name}></option>
+                  )
+                })
+              }
+            </datalist>
+            <button className="btn btn-error"
+              onClick={() => {
+                let result = products.filter((el) => {
+                  return el.name.toLowerCase().replace(/\s/g, "").includes(
+                    searchInput.current.value.toLowerCase().replace(/\s/g, "")
+                  );
+                });
+                setProducts(result)
+                searchInput.current.value = ""
+              }
+              }>Search</button>
+          </div>
+        </div>
         <table className="table table-fixed w-110 md:w-150 lg:w-240 xl:w-350">
           <thead>
             <tr>
