@@ -27,20 +27,39 @@ export default function App() {
       price: +priceInput.current.value,
       qty: +qtyInput.current.value,
     };
-    if (newPhone.name === "") {
-      alert("Name cannot be empty");
-    } else if (newPhone.price === 0) {
-      alert("Price cannot be empty");
-    } else if (newPhone.qty === 0) {
-      alert("Qty cannot be empty");
-    } else {
+    let productsName = copy.filter((el) => {
+      return (el.name.toLowerCase().replace(/\s/g, "") == newPhone.name.toLowerCase().replace(/\s/g, ""))
+    })
+    if (productsName.length == 0) {
+      productsName = [{ name: "" }]
+    }
+    let isFound = productsName[0].name.toLowerCase().replace(/\s/g, "") == newPhone.name.toLowerCase().replace(/\s/g, "")
+    if (!isFound) {
+      if (newPhone.name === "") {
+        alert("Name cannot be empty");
+      } else if (newPhone.price === 0) {
+        alert("Price cannot be empty");
+      } else if (newPhone.qty === 0) {
+        alert("Qty cannot be empty");
+      } else {
+        nameInput.current.value = "";
+        priceInput.current.value = "";
+        qtyInput.current.value = "";
+        copy.push(newPhone);
+        setProducts(copy);
+        setCopyProducts(copy)
+        setList(copy)
+      }
+    }
+    else {
+      if (newPhone.name === "") {
+        alert("Name cannot be empty");
+        return
+      }
+      alert("This Product is already ")
       nameInput.current.value = "";
       priceInput.current.value = "";
       qtyInput.current.value = "";
-      copy.push(newPhone);
-      setProducts(copy);
-      setCopyProducts(copy)
-      setList(copy)
     }
   };
 
@@ -63,7 +82,6 @@ export default function App() {
     editQtyInput.current.value = +products[index].qty;
     setChange({ name: products[index].name, price: +products[index].price, qty: products[index].qty })
   }
-  console.log(change);
 
   const EditProduct = () => {
     if (editNameInput.current.value === "") {
@@ -113,9 +131,9 @@ export default function App() {
                 }))
               }}>
               {
-                list.map((el) => {
+                list.map((el, index) => {
                   return (
-                    <option value={el.name}></option>
+                    <option key={index} value={el.name}></option>
                   )
                 })
               }
