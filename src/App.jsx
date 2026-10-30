@@ -40,6 +40,7 @@ export default function App() {
       copy.push(newPhone);
       setProducts(copy);
       setCopyProducts(copy)
+      setList(copy)
     }
   };
 
@@ -50,6 +51,7 @@ export default function App() {
       copy.splice(index, 1);
       setProducts(copy);
       setCopyProducts(copy)
+      setList(copy)
     } else return;
   };
 
