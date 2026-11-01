@@ -104,6 +104,8 @@ export default function SectionOne() {
         setChange({ name: products[index].name, price: +products[index].price, qty: products[index].qty })
     }
 
+    console.log(globalIndex);
+
     const EditProduct = () => {
         if (editNameInput.current.value === "") {
             alert("Name cannot be empty");
@@ -217,42 +219,42 @@ export default function SectionOne() {
                                     >
                                         Edit
                                     </button>
-                                    <dialog id="edit_phone_modal" className="modal">
-                                        <div className="modal-box">
-                                            <h3 className="font-bold text-lg">Edit Phone</h3>
-                                            <div className="modal-action">
-                                                <form method="dialog" className="flex flex-col gap-3 w-full">
-                                                    <input
-                                                        type="text"
-                                                        placeholder="Enter edited phone name"
-                                                        className="input w-full"
-                                                        ref={editNameInput}
-                                                    />
-                                                    <input
-                                                        type="number"
-                                                        placeholder="Enter edited phone price"
-                                                        className="input w-full"
-                                                        ref={editPriceInput}
-                                                    />
-                                                    <input
-                                                        type="number"
-                                                        placeholder="Enter edited phone qty"
-                                                        className="input w-full"
-                                                        ref={editQtyInput}
-                                                    />
-                                                    <button className="btn btn-success" onClick={EditProduct}>
-                                                        Save
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </dialog>
                                 </td>
                             </tr>
                         );
                     })}
                 </tbody>
             </table>
+            <dialog id="edit_phone_modal" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Edit Phone</h3>
+                    <div className="modal-action">
+                        <form method="dialog" className="flex flex-col gap-3 w-full">
+                            <input
+                                type="text"
+                                placeholder="Enter edited phone name"
+                                className="input w-full"
+                                ref={editNameInput}
+                            />
+                            <input
+                                type="number"
+                                placeholder="Enter edited phone price"
+                                className="input w-full"
+                                ref={editPriceInput}
+                            />
+                            <input
+                                type="number"
+                                placeholder="Enter edited phone qty"
+                                className="input w-full"
+                                ref={editQtyInput}
+                            />
+                            <button className="btn btn-success" onClick={EditProduct}>
+                                Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </section>
     )
 }
