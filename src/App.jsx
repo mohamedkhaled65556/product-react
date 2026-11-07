@@ -107,7 +107,7 @@ export default function App() {
       <header className="text-amber-400 text-6xl font-bold text-center p-4  bg-red-700 drop-shadow-2xl border-5 border-dashed">
         Your Product
       </header>
-      <div className="container mx-3 mt-[5%] xl:px-20">
+      <div className="container mt-[5%] xl:px-20">
         <div className="flex justify-between items-center">
           <button
             className="btn btn-warning my-3 mx-3"
@@ -153,7 +153,7 @@ export default function App() {
               }>Search</button>
           </div>
         </div>
-        <table className="table table-fixed w-110 md:w-150 lg:w-240 xl:w-350">
+        <table className="table table-fixed w-120 md:w-160 lg:w-240 xl:w-350">
           <thead>
             <tr>
               <th>#</th>
