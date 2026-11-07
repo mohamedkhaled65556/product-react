@@ -80,7 +80,7 @@ export default function App() {
     editNameInput.current.value = products[index].name;
     editPriceInput.current.value = +products[index].price;
     editQtyInput.current.value = +products[index].qty;
-    setChange({ name: products[index].name, price: +products[index].price, qty: products[index].qty })
+    setChange({ name: products[index].name, price: +products[index].price, qty: +products[index].qty })
   }
 
   const EditProduct = () => {
